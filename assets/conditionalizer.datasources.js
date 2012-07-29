@@ -21,12 +21,8 @@ var conditionalizer;
 		'Make sure {$modes}': false,
 		'any condition is true': false,
 		'any condition is not true': false,
-		'any condition equals yes': false,
-		'any condition equals no': false,
 		'all conditions are true': false,
 		'all conditions are not true': false,
-		'all conditions equals yes': false,
-		'all conditions equals no': false,
 		'Output Parameters': false,
 		'Required URL Parameter': false,
 		'An empty result will be returned when this parameter does not have a value.': false
@@ -159,12 +155,8 @@ var conditionalizer;
 			conditionalizer.elements.options = $('<select name="conditionalizer[mode]">' + 
 				'<option value="any-true">' + Symphony.Language.get('any condition is true') + '</option>' +
 				'<option value="any-false">' + Symphony.Language.get('any condition is false') + '</option>' +
-				'<option value="any-yes">' + Symphony.Language.get('any condition equals yes') + '</option>' +
-				'<option value="any-no">' + Symphony.Language.get('any condition equals no') + '</option>' +
 				'<option value="all-true">' + Symphony.Language.get('all conditions are true') + '</option>' +
 				'<option value="all-false">' + Symphony.Language.get('all conditions are false') + '</option>' +
-				'<option value="all-yes">' + Symphony.Language.get('all conditions are yes') + '</option>' +
-				'<option value="all-no">' + Symphony.Language.get('all conditions are no') + '</option>' +
 			'</select>');
 			
 			return conditionalizer.elements.options;
@@ -206,22 +198,10 @@ var conditionalizer;
 				else if((conditions[2] == 'is' && conditions[3][0] == 'false') || (conditions[2] == 'is not' && conditions[3][0] == 'true')) {
 					conditionalizer.elements.modes.find('select').val('all-false');
 				}
-				else if((conditions[2] == 'is' && conditions[3][0] == 'yes') || (conditions[2] == 'is not' && conditions[3][0] == 'no')) {
-					conditionalizer.elements.modes.find('select').val('all-yes');
-				}
-				else if((conditions[2] == 'is' && conditions[3][0] == 'no') || (conditions[2] == 'is not' && conditions[3][0] == 'yes')) {
-					conditionalizer.elements.modes.find('select').val('all-no');
-				}
 			}
 			else {
 				if((conditions[2] == 'is' && conditions[3][0] == 'false') || (conditions[2] == 'is not' && conditions[3][0] == 'true')) {
 					conditionalizer.elements.modes.find('select').val('any-false');
-				}
-				else if((conditions[2] == 'is' && conditions[3][0] == 'yes') || (conditions[2] == 'is not' && conditions[3][0] == 'no')) {
-					conditionalizer.elements.modes.find('select').val('any-yes');
-				}
-				else if((conditions[2] == 'is' && conditions[3][0] == 'no') || (conditions[2] == 'is not' && conditions[3][0] == 'yes')) {
-					conditionalizer.elements.modes.find('select').val('any-no');
 				}
 				else {
 					conditionalizer.elements.modes.find('select').val('any-true');				
@@ -292,27 +272,15 @@ var conditionalizer;
 				
 				// Get mode
 				if(conditionalizer.elements.modes.find('select').val() == 'any-true') {
-					conditionalizer.elements.conditions.val('(if any of (' + conditions + ') is (true))');			
+					conditionalizer.elements.conditions.val('(if any of (' + conditions + ') is (yes))');			
 				}				
 				else if(conditionalizer.elements.modes.find('select').val() == 'any-false') {
-					conditionalizer.elements.conditions.val('(if any of (' + conditions + ') is (false))');			
-				}
-				else if(conditionalizer.elements.modes.find('select').val() == 'any-yes') {
-					conditionalizer.elements.conditions.val('(if any of (' + conditions + ') is (yes))');			
-				}
-				else if(conditionalizer.elements.modes.find('select').val() == 'any-no') {
 					conditionalizer.elements.conditions.val('(if any of (' + conditions + ') is (no))');			
 				}
 				if(conditionalizer.elements.modes.find('select').val() == 'all-true') {
-					conditionalizer.elements.conditions.val('(if all of (' + conditions + ') is (true))');			
+					conditionalizer.elements.conditions.val('(if all of (' + conditions + ') is (yes))');			
 				}				
 				else if(conditionalizer.elements.modes.find('select').val() == 'all-false') {
-					conditionalizer.elements.conditions.val('(if all of (' + conditions + ') is (false))');			
-				}
-				else if(conditionalizer.elements.modes.find('select').val() == 'all-yes') {
-					conditionalizer.elements.conditions.val('(if all of (' + conditions + ') is (yes))');			
-				}
-				else if(conditionalizer.elements.modes.find('select').val() == 'all-no') {
 					conditionalizer.elements.conditions.val('(if all of (' + conditions + ') is (no))');			
 				}
 			}
