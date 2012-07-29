@@ -26,7 +26,9 @@ var conditionalizer;
 		'all conditions are true': false,
 		'all conditions are not true': false,
 		'all conditions equals yes': false,
-		'all conditions equals no': false
+		'all conditions equals no': false,
+		'Output Parameters': false,
+		'Required URL Parameter': false
 	});
 
 	// Conditionalizer
@@ -71,6 +73,9 @@ var conditionalizer;
 			// Create tag list
 			conditionalizer.elements.tags.off('click.tags').on('click.tags', 'li', conditionalizer.clickTag);
 			
+			// Load required URL parameter
+			conditionalizer.loadRequiredParameter();
+			
 			// Load existing conditions
 			if(conditionalizer.elements.conditions.val() != '') {
 				conditionalizer.loadConditions();
@@ -78,6 +83,9 @@ var conditionalizer;
 			
 			// Save conditions
 			$('div.actions input').on('click.conditionalizer', conditionalizer.save);
+			
+			// Reposition condition interface when the Data Source type supports output options
+			$('#ds-context').on('change.conditionalizer', conditionalizer.position).trigger('change.conditionalizer');
 			
 			// Status
 			conditionalizer.initialised = true;
@@ -235,6 +243,11 @@ var conditionalizer;
 				value = '';
 			}
 			
+			// Check condition
+			if(param.substr(0, 1) != '{') {
+				param = '{' + param + '}';
+			}
+			
 			// Set values
 			instance.find('select:eq(0)').val(param);
 			instance.find('select:eq(1)').val(comparison);
@@ -297,6 +310,30 @@ var conditionalizer;
 		
 		conditionToString: function(instance) {
 			return '(if value of (' + instance.find('select:eq(0)').val() + ') ' + instance.find('select:eq(1)').val() + ' (' + instance.find('input').val() + '))';
+		},
+		
+		position: function() {
+			var outputOptions = $('legend:contains("' + Symphony.Language.get('Output Options') + '"):visible');
+			if(outputOptions.length > 0) {
+				conditionalizer.elements.fieldset.insertBefore(outputOptions.parent());
+			}
+			else {
+				conditionalizer.elements.fieldset.insertBefore('div.actions');
+			}
+		},
+		
+		loadRequiredParameter: function() {
+			var label = $('label:contains("' + Symphony.Language.get('Required URL Parameter') + '"):visible');
+			if(label.length > 0) {
+				var param = label.find('input').val();
+				if(param != '') {
+					conditionalizer.addCondition(param);
+				}
+			}
+			
+			// Remove all required URL parameter fields
+			var labels = $('label:contains("' + Symphony.Language.get('Required URL Parameter') + '")').remove();
+			labels.next('p.help').remove();
 		},
 		
 		// Click tags
