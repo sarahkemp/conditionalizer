@@ -82,6 +82,9 @@ var conditionalizer;
 				conditionalizer.loadConditions();
 			}
 			
+			// Hide modes when only a single condition is present
+			conditionalizer.switchModes();
+			
 			// Save conditions
 			$('div.actions input').on('click.conditionalizer', conditionalizer.save);
 			
@@ -98,7 +101,7 @@ var conditionalizer;
 			conditionalizer.elements.list.append(conditionalizer.createTemplate());
 
 			conditionalizer.elements.duplicator = $('<div class="frame" />');
-			conditionalizer.elements.duplicator.append(conditionalizer.elements.list).symphonyDuplicator();
+			conditionalizer.elements.duplicator.append(conditionalizer.elements.list).symphonyDuplicator().on('constructstop.duplicator destructstart.duplicator', conditionalizer.switchModes);
 				
 			return conditionalizer.elements.duplicator;
 		},
@@ -163,6 +166,17 @@ var conditionalizer;
 			'</select>');
 			
 			return conditionalizer.elements.options;
+		},
+		
+		switchModes: function(event) {
+			if(conditionalizer.elements.list.find('li').length > 1) {
+				console.log('> 1');
+				conditionalizer.elements.modes.fadeIn();
+			}
+			else {
+				console.log('= 1');
+				conditionalizer.elements.modes.fadeOut();
+			}
 		},
 		
 		// Get available parameters from tag list
