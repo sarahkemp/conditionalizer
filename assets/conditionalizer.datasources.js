@@ -163,7 +163,8 @@ var conditionalizer;
 				
 				if(text.slice(0, 1) == '$') {
 					$('<option />', {
-						text: '{' + $(this).text() + '}'
+						text: $(this).text(),
+						value: '{' + $(this).text() + '}'
 					}).appendTo(select);
 				}
 			});
