@@ -28,7 +28,8 @@ var conditionalizer;
 		'all conditions equals yes': false,
 		'all conditions equals no': false,
 		'Output Parameters': false,
-		'Required URL Parameter': false
+		'Required URL Parameter': false,
+		'An empty result will be returned when this parameter does not have a value.': false
 	});
 
 	// Conditionalizer
@@ -334,6 +335,9 @@ var conditionalizer;
 			// Remove all required URL parameter fields
 			var labels = $('label:contains("' + Symphony.Language.get('Required URL Parameter') + '")').remove();
 			labels.next('p.help').remove();
+			
+			// Remove unneeded help texts
+			$('p.help:contains("' + Symphony.Language.get('An empty result will be returned when this parameter does not have a value.') + '")').remove();
 		},
 		
 		// Click tags
