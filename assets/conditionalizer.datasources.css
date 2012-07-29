@@ -8,6 +8,7 @@ fieldset.conditionalizer div.duplicator header:before {
 
 fieldset.conditionalizer div.duplicator header:before {
 	content: counter(conditions) ". ";
+	font-weight: bold;
 }
 
 fieldset.conditionalizer p.modes {

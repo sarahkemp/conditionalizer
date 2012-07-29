@@ -97,7 +97,7 @@ var conditionalizer;
 		// Create template
 		createTemplate: function() {
 			conditionalizer.elements.template = $('<li class="template">' + 
-				'<header>' + Symphony.Language.get('Condition') + '</header>' +
+				'<header><h4>' + Symphony.Language.get('Condition') + '</h4></header>' +
 				'<div class="content">' +
 					'<div class="three columns">' +
 						'<label class="column">' +
