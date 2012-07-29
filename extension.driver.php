@@ -128,7 +128,8 @@
 
 			$fieldset = new XMLElement('fieldset');
 			$fieldset->setAttribute('class', 'settings conditionalizer');
-			$fieldset->appendChild(new XMLElement('legend', __('Conditionalizer')));
+			$fieldset->appendChild(new XMLElement('legend', __('Conditions')));
+			$fieldset->appendChild(new XMLElement('p', __('An empty result will be returned when the conditions are not met.'), array('class' => 'help')));
 
 			$label = Widget::Label(__('Expression'));
 			$label->appendChild(Widget::Textarea('conditionalizer', 6, 50, General::sanitize(stripslashes($data)), array('class' => 'code')));
