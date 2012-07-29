@@ -80,7 +80,7 @@ var conditionalizer;
 			$('div.actions input').on('click.conditionalizer', conditionalizer.save);
 			
 			// Status
-			initialised = true;
+			conditionalizer.initialised = true;
 		},
 		
 		// Create Condition Dupcliator
