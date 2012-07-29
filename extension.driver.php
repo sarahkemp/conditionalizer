@@ -98,6 +98,11 @@
 			$callback = Symphony::Engine()->getPageCallback();
 			if ($callback['driver'] != 'blueprintsdatasources' || !is_array($callback['context']) || empty($callback['context'])) return;
 
+			// Append skripts and styles for Data Source editor
+			Administration::instance()->Page->addScriptToHead(URL . '/extensions/conditionalizer/assets/conditionalizer.datasources.js', 100, false);
+			Administration::instance()->Page->addScriptToHead(URL . '/extensions/conditionalizer/assets/conditionalizer.tokenizer.js', 101, false);
+			Administration::instance()->Page->addStylesheetToHead(URL . '/extensions/conditionalizer/assets/conditionalizer.datasources.css', 'screen', 102, false);
+
 			// Find data source handle.
 			$handle = NULL;
 			if ($callback['context'][0] == 'edit' && !empty($callback['context'][1])) {
@@ -124,8 +129,6 @@
 			$fieldset = new XMLElement('fieldset');
 			$fieldset->setAttribute('class', 'settings conditionalizer');
 			$fieldset->appendChild(new XMLElement('legend', __('Conditionalizer')));
-
-			$fieldset->appendChild(new XMLElement('script', NULL, array('src' => URL . '/extensions/conditionalizer/assets/conditionalizer.js', 'type' => 'text/javascript')));
 
 			$label = Widget::Label(__('Expression'));
 			$label->appendChild(Widget::Textarea('conditionalizer', 6, 50, General::sanitize(stripslashes($data)), array('class' => 'code')));

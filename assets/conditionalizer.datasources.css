@@ -1,0 +1,27 @@
+fieldset.conditionalizer {
+	counter-reset: conditions;
+}
+
+fieldset.conditionalizer div.duplicator header:before {
+	counter-increment: conditions;
+}
+
+fieldset.conditionalizer div.duplicator header:before {
+	content: counter(conditions) ". ";
+}
+
+fieldset.conditionalizer p.modes {
+	margin-top: -30px;	
+}
+
+fieldset.conditionalizer p.modes select {
+	display: inline;
+	width: auto;
+}
+
+/* Hide direct input */
+
+fieldset.conditionalizer > label,
+fieldset.conditionalizer > ul.tags {
+	display: none;
+}
