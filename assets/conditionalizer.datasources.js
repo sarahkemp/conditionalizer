@@ -49,6 +49,7 @@ var conditionalizer;
 			
 			// Catch error
 			if(conditionalizer.elements.fieldset.find('.invalid').length > 0) {
+				conditionalizer.position();
 				return;
 			}
 			
@@ -62,6 +63,7 @@ var conditionalizer;
 				}
 			});
 			if(conditionalizer.editor == false) {
+				conditionalizer.position();
 				return;	
 			}
 			
@@ -170,11 +172,9 @@ var conditionalizer;
 		
 		switchModes: function(event) {
 			if(conditionalizer.elements.list.find('li').length > 1) {
-				console.log('> 1');
 				conditionalizer.elements.modes.fadeIn();
 			}
 			else {
-				console.log('= 1');
 				conditionalizer.elements.modes.fadeOut();
 			}
 		},
