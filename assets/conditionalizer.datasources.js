@@ -18,7 +18,7 @@ var conditionalizer;
 		'are not in': false,
 		'Values': false,
 		'comma-separated': false,
-		'An empty result will be returned when {$modes}': false,
+		'Make sure {$modes}': false,
 		'any condition is true': false,
 		'any condition is not true': false,
 		'any condition equals yes': false,
@@ -141,7 +141,7 @@ var conditionalizer;
 		createModes: function() {
 			conditionalizer.elements.modes = $('<p />', {
 				class: 'modes',
-				html: Symphony.Language.get('An empty result will be returned when {$modes}', {
+				html: Symphony.Language.get('Make sure {$modes}', {
 					'modes': conditionalizer.createModeOptions().prop('outerHTML')
 				})
 			});
