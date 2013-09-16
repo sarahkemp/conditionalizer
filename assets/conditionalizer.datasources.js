@@ -50,17 +50,14 @@ var conditionalizer;
 			}
 			
 			// Parse condition
-			try{
-				conditionalizer.condition = conditionalizer.tokenize.parse(conditionalizer.elements.conditions.val());
-			}catch(e){}
+			conditionalizer.condition = conditionalizer.tokenize.parse(conditionalizer.elements.conditions.val());
+
 			// Check if condition can be displayed in editor
-			if(conditionalizer.condition[1]){
-				$.each(conditionalizer.condition[1], function(index, condition) {
-					if(condition[1].length > 1) {
-						conditionalizer.editor = false;
-					}
-				});
-			}
+			$.each(conditionalizer.condition[1], function(index, condition) {
+				if(condition[1].length > 1) {
+					conditionalizer.editor = false;
+				}
+			});
 			if(conditionalizer.editor == false) {
 				conditionalizer.position();
 				return;	
@@ -195,15 +192,15 @@ var conditionalizer;
 						
 			// Set modes
 			if(conditions[0] == 'all of') {
-				if((conditions[2] == 'is' && conditions[3][0] == 'true') || (conditions[2] == 'is not' && conditions[3][0] == 'false')) {
+				if((conditions[2] == 'is' && conditions[3][0] == 'yes') || (conditions[2] == 'is not' && conditions[3][0] == 'no')) {
 					conditionalizer.elements.modes.find('select').val('all-true');
 				}
-				else if((conditions[2] == 'is' && conditions[3][0] == 'false') || (conditions[2] == 'is not' && conditions[3][0] == 'true')) {
+				else if((conditions[2] == 'is' && conditions[3][0] == 'no') || (conditions[2] == 'is not' && conditions[3][0] == 'yes')) {
 					conditionalizer.elements.modes.find('select').val('all-false');
 				}
 			}
 			else {
-				if((conditions[2] == 'is' && conditions[3][0] == 'false') || (conditions[2] == 'is not' && conditions[3][0] == 'true')) {
+				if((conditions[2] == 'is' && conditions[3][0] == 'no') || (conditions[2] == 'is not' && conditions[3][0] == 'yes')) {
 					conditionalizer.elements.modes.find('select').val('any-false');
 				}
 				else {
