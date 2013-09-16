@@ -150,6 +150,7 @@ class Conditionalizer {
 					if (!is_array($ds->dsParamPARAMOUTPUT)) $params['$ds-'.$ds->dsParamROOTELEMENT] = $ds->dsParamPARAMOUTPUT;
 					else {
 						foreach ($ds->dsParamPARAMOUTPUT as $field) {
+							$field = Lang::createHandle($field);
 							$params['$ds-'.$ds->dsParamROOTELEMENT.'.'.$field] = $field;
 						}
 					}
