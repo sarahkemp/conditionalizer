@@ -58,6 +58,7 @@ var conditionalizer;
 					conditionalizer.editor = false;
 				}
 			});
+
 			if(conditionalizer.editor == false) {
 				conditionalizer.position();
 				return;	
