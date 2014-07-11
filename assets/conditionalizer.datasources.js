@@ -50,15 +50,17 @@ var conditionalizer;
 			}
 			
 			// Parse condition
-			conditionalizer.condition = conditionalizer.tokenize.parse(conditionalizer.elements.conditions.val());
-
+			try{
+				conditionalizer.condition = conditionalizer.tokenize.parse(conditionalizer.elements.conditions.val());
+			}catch(e){}
 			// Check if condition can be displayed in editor
-			$.each(conditionalizer.condition[1], function(index, condition) {
-				if(condition[1].length > 1) {
-					conditionalizer.editor = false;
-				}
-			});
-
+			if(conditionalizer.condition[1]){
+				$.each(conditionalizer.condition[1], function(index, condition) {
+					if(condition[1].length > 1) {
+						conditionalizer.editor = false;
+					}
+				});
+			}
 			if(conditionalizer.editor == false) {
 				conditionalizer.position();
 				return;	
